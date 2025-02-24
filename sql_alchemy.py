@@ -57,3 +57,6 @@ with Session(engine) as session:
     if scalars_result:
         for row in scalars_result:
             print(row)
+
+
+
