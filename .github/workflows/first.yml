@@ -1,35 +1,11 @@
-# Будет видно везьде. Без пробелов желательно
-name: My-first-CI-attempt
+name: echo-something
 
-# Controls when the workflow will run
-on:
-  # Если просто push - то любой пуш
-  merge:
-    branches: [ "test" ]
-  # When using the pull_request and pull_request_target events, you can configure a workflow to run only for pull requests that target specific branches.
-  pull_request:
-    branches: [ "test" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# Их может быть много
+on: push
 jobs:
-  # Название Джобы, каждый джоб запускается на отдельном докере которую делает гитхаб
-  my_testing:
-    # По сути описываем докер-раннеры
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - name: Print Hello message
-        run: echo "my_testing"
-
-
-  my_deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Print Hello message
-        run: echo "my_deploy"
 
+      - uses: actions/checkout@v4
 
+      - run: make say-hello
